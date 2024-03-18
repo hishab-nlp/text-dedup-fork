@@ -151,7 +151,7 @@ temp.py
 outputs.json
 benchmark.py
 visualize.py
-requirements.txt
+# requirements.txt
 output
 *.arrow
 **/*pstats

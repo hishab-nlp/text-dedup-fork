@@ -145,6 +145,31 @@ INFO     Duplicate Number                : 44679 (50.31%)
 INFO     🤗 Happy Deduplicating 🤗
 ```
 
+For local data folder (csv, jsonl, text etc files)
+```bash
+# input
+python -m text_dedup.minhash \
+  --path "json" \
+  --data_dir "mypath/mydata" \
+  --split "train" \
+  --cache_dir "./cache" \
+  --output "output/minhash/oscar_gl_dedup" \
+  --column "text" \
+  --batch_size 10000
+
+# output
+INFO     Loading                         : 2.62 seconds
+INFO     MinHashing                      : 0.08 seconds
+INFO     Clustering                      : 2.20 seconds
+INFO     Filtering                       : 0.53 seconds
+INFO     Saving                          : 9.86 seconds
+INFO     Total                           : 15.29 seconds
+INFO     Data Number (before)            : 88803
+INFO     Data Number (after)             : 44124 (49.69%)
+INFO     Duplicate Number                : 44679 (50.31%)
+INFO     🤗 Happy Deduplicating 🤗
+```
+
 ### SimHash Near Deduplication
 
 ```bash
