@@ -7,13 +7,13 @@ from concurrent.futures import ThreadPoolExecutor
 
 cpu_count = os.cpu_count()
 
-all_files = glob.glob('/data2/filtered_data/query_cl_ben_crawl_2017_04_to_2019_30_and_2023_50/bn_passed_normaliezd/*.jsonl')
+all_files = glob.glob('/data2/filtered_data/query_cl_ben_crawl_1935_2340/bn_passed_normaliezd/*.jsonl')
 print(f"total files: {len(all_files)}")
 
-output_path = "/data2/deduplication/dedup_input/query_cl_ben_crawl_2017_04_to_2019_30_and_2023_50"
+output_path = "/data2/deduplication/dedup_input/query_cl_ben_crawl_1935_2340"
 os.makedirs(output_path, exist_ok=True)
 
-query_chunk_name = "query_cl_ben_crawl_2017_04_to_2019_30_and_2023_50"
+query_chunk_name = "query_cl_ben_crawl_1935_2340"
 
 def create_sublists(input_list, size):
     return [input_list[i:i + size] for i in range(0, len(input_list), size)]
