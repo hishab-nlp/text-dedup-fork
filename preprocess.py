@@ -7,11 +7,13 @@ from concurrent.futures import ThreadPoolExecutor
 
 cpu_count = os.cpu_count()
 
-all_files = glob.glob('/data2/deduplication/dedup_input/query_url_tld_bd_cc_2017_2023/en_passed_normaliezd/*.jsonl')
+all_files = glob.glob('/data2/filtered_data/query_cl_ben_crawl_2017_04_to_2019_30_and_2023_50/bn_passed_normaliezd/*.jsonl')
 print(f"total files: {len(all_files)}")
 
-output_path = "/data2/deduplication/dedup_input/query_url_tld_bd_cc_2017_2023/preprocessed"
+output_path = "/data2/deduplication/dedup_input/query_cl_ben_crawl_2017_04_to_2019_30_and_2023_50"
 os.makedirs(output_path, exist_ok=True)
+
+query_chunk_name = "query_cl_ben_crawl_2017_04_to_2019_30_and_2023_50"
 
 def create_sublists(input_list, size):
     return [input_list[i:i + size] for i in range(0, len(input_list), size)]
@@ -20,9 +22,10 @@ def process(file):
     output = []
     with open(file) as f:
         lines = f.readlines()
-        for line in lines:
+        for i, line in enumerate(lines):
             data = json.loads(line)
-            new_data = {'text': data['text']}
+            meta = f"query_name_{query_chunk_name}_chunk_name_{os.path.basename(file)}_line_idx_{i}"
+            new_data = {'text': data['text'], 'meta': meta}
             output.append(new_data)
 
     return file, output
